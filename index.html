@@ -20,20 +20,20 @@ body { margin:0; padding:0; }
 mapboxgl.accessToken = 'pk.eyJ1IjoidHdlbnR3b3J0aCIsImEiOiJjank3bmthZXEwMWN5M2hvMmVpZDV4aWhyIn0.aEBI-qd5b-yv7wbstwhLnA';
 
 var geojson = {
-  type: 'FeatureCollection',
-  features: [{
-    type: 'Feature',
-    geometry: {
-      type: 'Point',
-      coordinates: [-73.210398, 44.481452]
+  "type": "FeatureCollection",
+  "features": [{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-73.210398, 44.481452]
     },
-    properties: {
-      title: 'Thomas - Burlington, VT',
-      description: 'Listen to him answer the question.',
-      link: 'maybe a link here'
+    "properties": {
+      "title": "Thomas - Burlington, VT",
+      "description": "Listen to him answer the question."
     }
   }]
 };
+
 
 var map = new mapboxgl.Map({
 container: 'map',
