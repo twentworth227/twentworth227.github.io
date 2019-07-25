@@ -31,7 +31,8 @@
       },
       "properties": {
         "title": "Thomas - Burlington, VT",
-        "description": "Listen to him answer the question."
+        "description": "Listen to him answer the question.",
+        "url": "upbeat_minor.mp3"
       }
     }]
   };
@@ -62,11 +63,23 @@
       var audio = document.getElementById('audio1');
       if (audio.paused) {
           audio.play();
-      }else{
+      } else{
           audio.pause();
-          audio.currentTime = 0
+          // audio.currentTime = 0
       }
   }
+
+  function stop() {
+      var audio = document.getElementById('audio1');
+      if (audio.playing) {
+          audio.stop();
+          audio.pause();
+          audio.currentTime = 0;
+        } else{
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      }
 
   // add markers to map
   geojson.features.forEach(function(marker) {
@@ -84,7 +97,8 @@
     // .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
     // "<button class='player__play button button--large' onclick='soundManager.play('audio')'>Play</button>"))
     .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
-    '<audio id="audio1" src="upbeat_minor.mp3"></audio>' + '<button onClick="play()">Play</button>'))
+    '<audio id="audio1" src=' + marker.properties.url + '></audio>' + '<button onClick="play()">Play/Pause</button>' +
+    '<button onClick="stop()">Stop</button>'))
 
     .addTo(map);
   });
