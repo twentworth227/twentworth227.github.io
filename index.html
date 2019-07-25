@@ -44,6 +44,29 @@
     // zoom: 11.15
   });
 
+  // soundManager.setup({
+  //   url: 'soundmanager/',
+  //   onready: function() {
+  //     var audio = soundManager.createSound({
+  //       id: 'audio',
+  //       url: 'upbeat_minor.mp3'
+  //     });
+  //     // audio.play();
+  //   },
+  //   ontimeout: function() {
+  //     // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
+  //   }
+  // });
+
+  function play() {
+      var audio = document.getElementById('audio1');
+      if (audio.paused) {
+          audio.play();
+      }else{
+          audio.pause();
+          audio.currentTime = 0
+      }
+  }
 
   // add markers to map
   geojson.features.forEach(function(marker) {
@@ -58,11 +81,17 @@
     new mapboxgl.Marker(el)
     .setLngLat(marker.geometry.coordinates)
     .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    // .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
+    // "<button class='player__play button button--large' onclick='soundManager.play('audio')'>Play</button>"))
     .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
-    '<button class="player__play button button--large">Play</button>'))
+    '<audio id="audio1" src="upbeat_minor.mp3"></audio>' + '<button onClick="play()">Play</button>'))
 
     .addTo(map);
   });
+
+  //
+  // <audio id="audio1" src="01.wav"></audio>
+  // <button onClick="play()">Play</button>
 
 
   // // Ensure that if the map is zoomed out such that multiple
