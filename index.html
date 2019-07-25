@@ -22,19 +22,33 @@
 
   var geojson = {
     "type": "FeatureCollection",
-    "features": [{
-      "type": "Feature",
+    "features": [
+      { "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [-73.210398, 44.481452]
       },
       "properties": {
+        "unique_id": "1001",
         "title": "Thomas - Burlington, VT",
-        "description": "Listen to him answer the question.",
+        "description": "Listen to this silly song.",
         "url": "audio_files/upbeat_minor.mp3"
       }
-    }]
-  };
+    },
+    { "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-73.1673, 44.0153]
+    },
+    "properties": {
+      "unique_id": "1002",
+      "title": "Anderson - Middlebury, VT",
+      "description": "Milktoast.",
+      "url": "audio_files/ner2.mp3"
+    }
+  },
+]
+};
 
 
   var map = new mapboxgl.Map({
@@ -58,8 +72,9 @@
   //   }
   // });
 
-  function play() {
-      var audio = document.getElementById('audio1');
+  function play(unique_id) {
+      var audio = document.getElementById(String(unique_id));
+      // console.log(String(unique_id))
       if (audio.paused) {
           audio.play();
       } else{
@@ -68,8 +83,8 @@
       }
   }
 
-  function stop() {
-      var audio = document.getElementById('audio1');
+  function stop(unique_id) {
+      var audio = document.getElementById(String(unique_id));
       if (audio.playing) {
           audio.stop();
           audio.pause();
@@ -87,6 +102,8 @@
     var el = document.createElement('div');
     el.className = 'marker';
 
+    var unique_id = marker.properties.unique_id;
+
     // make a marker for each feature and add to the map
     new mapboxgl.Marker(el)
     .setLngLat(marker.geometry.coordinates)
@@ -96,8 +113,9 @@
     // .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
     // "<button class='player__play button button--large' onclick='soundManager.play('audio')'>Play</button>"))
     .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
-    '<audio id="audio1" src=' + marker.properties.url + '></audio>' + '<button onClick="play()">Play/Pause</button>' +
-    '<button onClick="stop()">Stop</button>'))
+    '<audio id=' + unique_id + ' src=' + marker.properties.url + '></audio>' +
+    '<button onClick="play(' + unique_id + ')">Play/Pause</button>' +
+    '<button onClick="stop(' + unique_id + ')">Stop</button>'))
 
     .addTo(map);
   });
