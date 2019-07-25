@@ -32,7 +32,8 @@
         "unique_id": "1001",
         "title": "Thomas - Burlington, VT",
         "description": "Listen to this silly song.",
-        "url": "audio_files/upbeat_minor.mp3"
+        "url": "audio_files/upbeat_minor.mp3",
+        "img_url": "pictures/first.jpg"
       }
     },
     { "type": "Feature",
@@ -44,7 +45,8 @@
       "unique_id": "1002",
       "title": "Anderson - Middlebury, VT",
       "description": "Milktoast.",
-      "url": "audio_files/ner2.mp3"
+      "url": "audio_files/ner2.mp3",
+      "img_url": "pictures/second.jpg"
     }
   },
 ]
@@ -57,20 +59,6 @@
     // center: [-77.04, 38.907],
     // zoom: 11.15
   });
-
-  // soundManager.setup({
-  //   url: 'soundmanager/',
-  //   onready: function() {
-  //     var audio = soundManager.createSound({
-  //       id: 'audio',
-  //       url: 'upbeat_minor.mp3'
-  //     });
-  //     // audio.play();
-  //   },
-  //   ontimeout: function() {
-  //     // Hrmm, SM2 could not start. Missing SWF? Flash blocked? Show an error, etc.?
-  //   }
-  // });
 
   function play(unique_id) {
       var audio = document.getElementById(String(unique_id));
@@ -95,6 +83,17 @@
         }
       }
 
+    function show_image(src, width, height, alt) {
+        var img = document.createElement("img");
+        img.src = src;
+        img.width = 60;
+        img.height = 60;
+        img.alt = 'could not display image';
+
+        // This next line will just add it to the <body> tag
+        document.body.appendChild(img);
+    }
+
   // add markers to map
   geojson.features.forEach(function(marker) {
 
@@ -113,17 +112,20 @@
     // .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
     // "<button class='player__play button button--large' onclick='soundManager.play('audio')'>Play</button>"))
     .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
-    '<audio id=' + unique_id + ' src=' + marker.properties.url + '></audio>' +
+    '<img src=' + marker.properties.img_url + ' alt="could not display image" style="width:150px;height:150px;">' +
+    '<br>' + '<audio id=' + unique_id + ' src=' + marker.properties.url + '></audio>' +
     '<button onClick="play(' + unique_id + ')">Play/Pause</button>' +
     '<button onClick="stop(' + unique_id + ')">Stop</button>'))
 
     .addTo(map);
   });
 
-  //
-  // <audio id="audio1" src="01.wav"></audio>
-  // <button onClick="play()">Play</button>
 
+  // <button onclick=
+  //     "show_image('http://google.com/images/logo.gif',
+  //                  276,
+  //                  110,
+  //                  'Google Logo');">Add Google Logo</button>
 
   // // Ensure that if the map is zoomed out such that multiple
   // // copies of the feature are visible, the popup appears
