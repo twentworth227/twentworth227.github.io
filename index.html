@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>atyourbest</title>
+  <title>liveby</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet' />
@@ -52,12 +52,19 @@
 ]
 };
 
+var bounds = [
+  [-145, 18], // Southwest coordinates
+  [-59, 55]  // Northeast coordinates
+];
+
 
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/twentworth/cjy7nu17v04vz1cp69y5xka6g',
   center: [-96.5, 39],
-  zoom: 4
+  zoom: 4,
+  minZoom: 4,
+  maxBounds: bounds
 });
 
 
@@ -120,14 +127,15 @@ map.on('load', function() {
       //   * Blue, 20px circles when point count is less than 100
       //   * Yellow, 30px circles when point count is between 100 and 750
       //   * Pink, 40px circles when point count is greater than or equal to 750
+      // base color: #294151
       "circle-color": [
         "step",
         ["get", "point_count"],
-        "#78BDEB",
+        "#9E7131",
         100,
-        "#78BDEB",
+        "#9E7131",
         750,
-        "#78BDEB"
+        "#9E7131"
       ],
       "circle-radius": [
         "step",
@@ -159,9 +167,9 @@ map.on('load', function() {
     source: "points",
     filter: ["!", ["has", "point_count"]],
     paint: {
-      "circle-color": "#A07231",
+      "circle-color": "#9E7131",
       "circle-radius": 5,
-      "circle-stroke-width": .5,
+      "circle-stroke-width": 0, // .5
       "circle-stroke-color": "#fff"
     }
   });
