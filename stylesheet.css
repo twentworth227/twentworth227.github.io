@@ -1,4 +1,4 @@
-.marker {
+/* .marker {
   background-image: url('marker_v2.svg');
   width: 15px;
   height: 15px;
@@ -6,7 +6,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
-}
+} */
 
 .mapboxgl-popup {
   max-width: 200px;
@@ -17,7 +17,7 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-.mapboxgl-popup {
-  max-width: 400px;
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+.btn {
+  padding: 10px;
+  color: #182630;
 }

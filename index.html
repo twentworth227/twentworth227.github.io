@@ -5,6 +5,7 @@
   <title>liveby</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
+  <script src="https://use.fontawesome.com/ada9a9a588.js"></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet' />
   <link href="stylesheet.css" rel="stylesheet" type="text/css" />
   <style>
@@ -52,6 +53,8 @@
 ]
 };
 
+function $(x) {return document.getElementById(x);}
+
 var bounds = [
   [-145, 18], // Southwest coordinates
   [-59, 55]  // Northeast coordinates
@@ -68,12 +71,14 @@ var map = new mapboxgl.Map({
 });
 
 
-function play(unique_id) {
-  var audio = document.getElementById(String(unique_id));
-  // console.log(String(unique_id))
+function play_pause(unique_id) {
+  var audio = $(String(unique_id));
+  var playicon = $("playstate");
   if (audio.paused) {
+    playicon.className = "fa fa-pause fa-3x";
     audio.play();
   } else{
+    playicon.className = "fa fa-play fa-3x";
     audio.pause();
     // audio.currentTime = 0
   }
@@ -81,11 +86,15 @@ function play(unique_id) {
 
 function stop(unique_id) {
   var audio = document.getElementById(String(unique_id));
+  var stopicon = $("stopstate");
+  var playicon = $("playstate");
   if (audio.playing) {
+    playicon.className = "fa fa-play fa-3x"
     audio.stop();
     audio.pause();
     audio.currentTime = 0;
   } else{
+    playicon.className = "fa fa-play fa-3x"
     audio.pause();
     audio.currentTime = 0;
   }
@@ -217,10 +226,11 @@ map.on('load', function() {
     .setHTML('<h3>' + title + '</h3><p>' + description + '</p>' +
     '<img src=' + img_url + ' alt="could not display image" style="width:150px;height:150px;">' +
     '<br>' + '<audio id=' + unique_id + ' src=' + url + '></audio>' +
-    '<button onClick="play(' + unique_id + ')">Play/Pause</button>' +
-    '<button onClick="stop(' + unique_id + ')">Stop</button>')
+    '<a class="btn btn-default" data-toggle="tooltip" onClick="play_pause(' + unique_id + ')"><i id="playstate" class="fa fa-play fa-3x"></i></a>' +
+    '<a class="btn btn-default" data-toggle="tooltip" onClick="stop(' + unique_id + ')"><i id="stopstate" class="fa fa-stop fa-3x"></i></a>')
     .addTo(map);
-  });
+
+    });
 
   // Change the cursor to a pointer when the mouse is over the places layer.
   map.on('mouseenter', 'unclustered-point', function () {
@@ -232,9 +242,6 @@ map.on('load', function() {
     map.getCanvas().style.cursor = '';
   });
 });
-
-
-
 
 </script>
 
