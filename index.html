@@ -53,86 +53,179 @@
 };
 
 
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/twentworth/cjy7nu17v04vz1cp69y5xka6g',
-    // center: [-77.04, 38.907],
-    // zoom: 11.15
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/twentworth/cjy7nu17v04vz1cp69y5xka6g',
+  center: [-96.5, 39],
+  zoom: 4
+});
+
+
+function play(unique_id) {
+  var audio = document.getElementById(String(unique_id));
+  // console.log(String(unique_id))
+  if (audio.paused) {
+    audio.play();
+  } else{
+    audio.pause();
+    // audio.currentTime = 0
+  }
+}
+
+function stop(unique_id) {
+  var audio = document.getElementById(String(unique_id));
+  if (audio.playing) {
+    audio.stop();
+    audio.pause();
+    audio.currentTime = 0;
+  } else{
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+
+function show_image(src, width, height, alt) {
+  var img = document.createElement("img");
+  img.src = src;
+  img.width = 60;
+  img.height = 60;
+  img.alt = 'could not display image';
+
+  // This next line will just add it to the <body> tag
+  document.body.appendChild(img);
+}
+
+
+map.on('load', function() {
+  // Add a new source from our GeoJSON data and set the
+  // 'cluster' option to true. GL-JS will add the point_count property to your source data.
+  map.addSource("points", {
+    type: "geojson",
+    // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+    // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+    data: geojson,
+    cluster: true,
+    clusterMaxZoom: 14, // Max zoom to cluster points on
+    clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
   });
 
-  function play(unique_id) {
-      var audio = document.getElementById(String(unique_id));
-      // console.log(String(unique_id))
-      if (audio.paused) {
-          audio.play();
-      } else{
-          audio.pause();
-          // audio.currentTime = 0
-      }
-  }
+  map.addLayer({
+    id: "clusters",
+    type: "circle",
+    source: "points",
+    filter: ["has", "point_count"],
+    paint: {
+      // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
+      // with three steps to implement three types of circles:
+      //   * Blue, 20px circles when point count is less than 100
+      //   * Yellow, 30px circles when point count is between 100 and 750
+      //   * Pink, 40px circles when point count is greater than or equal to 750
+      "circle-color": [
+        "step",
+        ["get", "point_count"],
+        "#78BDEB",
+        100,
+        "#78BDEB",
+        750,
+        "#78BDEB"
+      ],
+      "circle-radius": [
+        "step",
+        ["get", "point_count"],
+        20,
+        100,
+        30,
+        750,
+        40
+      ]
+    }
+  });
 
-  function stop(unique_id) {
-      var audio = document.getElementById(String(unique_id));
-      if (audio.playing) {
-          audio.stop();
-          audio.pause();
-          audio.currentTime = 0;
-        } else{
-          audio.pause();
-          audio.currentTime = 0;
-        }
-      }
+  map.addLayer({
+    id: "cluster-count",
+    type: "symbol",
+    source: "points",
+    filter: ["has", "point_count"],
+    layout: {
+      "text-field": "{point_count_abbreviated}",
+      "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
+      "text-size": 12
+    }
+  });
 
-    function show_image(src, width, height, alt) {
-        var img = document.createElement("img");
-        img.src = src;
-        img.width = 60;
-        img.height = 60;
-        img.alt = 'could not display image';
+  map.addLayer({
+    id: "unclustered-point",
+    type: "circle",
+    source: "points",
+    filter: ["!", ["has", "point_count"]],
+    paint: {
+      "circle-color": "#A07231",
+      "circle-radius": 5,
+      "circle-stroke-width": .5,
+      "circle-stroke-color": "#fff"
+    }
+  });
 
-        // This next line will just add it to the <body> tag
-        document.body.appendChild(img);
+  // inspect a cluster on click
+  map.on('click', 'clusters', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
+    var clusterId = features[0].properties.cluster_id;
+    map.getSource('points').getClusterExpansionZoom(clusterId, function (err, zoom) {
+      if (err)
+      return;
+
+      map.easeTo({
+        center: features[0].geometry.coordinates,
+        zoom: zoom
+      });
+    });
+  });
+
+  map.on('mouseenter', 'clusters', function () {
+    map.getCanvas().style.cursor = 'pointer';
+  });
+  map.on('mouseleave', 'clusters', function () {
+    map.getCanvas().style.cursor = '';
+  });
+
+
+  map.on('click', 'unclustered-point', function (e) {
+    var coordinates = e.features[0].geometry.coordinates.slice();
+    var unique_id = e.features[0].properties.unique_id;
+    var title = e.features[0].properties.title;
+    var description = e.features[0].properties.description;
+    var url = e.features[0].properties.url;
+    var img_url = e.features[0].properties.img_url;
+
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
 
-  // add markers to map
-  geojson.features.forEach(function(marker) {
-
-    // create a HTML element for each feature
-    var el = document.createElement('div');
-    el.className = 'marker';
-
-    var unique_id = marker.properties.unique_id;
-
-    // make a marker for each feature and add to the map
-    new mapboxgl.Marker(el)
-    .setLngLat(marker.geometry.coordinates)
-    new mapboxgl.Marker(el)
-    .setLngLat(marker.geometry.coordinates)
-    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-    // .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
-    // "<button class='player__play button button--large' onclick='soundManager.play('audio')'>Play</button>"))
-    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' +
-    '<img src=' + marker.properties.img_url + ' alt="could not display image" style="width:150px;height:150px;">' +
-    '<br>' + '<audio id=' + unique_id + ' src=' + marker.properties.url + '></audio>' +
+    new mapboxgl.Popup()
+    .setLngLat(coordinates)
+    .setHTML('<h3>' + title + '</h3><p>' + description + '</p>' +
+    '<img src=' + img_url + ' alt="could not display image" style="width:150px;height:150px;">' +
+    '<br>' + '<audio id=' + unique_id + ' src=' + url + '></audio>' +
     '<button onClick="play(' + unique_id + ')">Play/Pause</button>' +
-    '<button onClick="stop(' + unique_id + ')">Stop</button>'))
-
+    '<button onClick="stop(' + unique_id + ')">Stop</button>')
     .addTo(map);
   });
 
+  // Change the cursor to a pointer when the mouse is over the places layer.
+  map.on('mouseenter', 'unclustered-point', function () {
+    map.getCanvas().style.cursor = 'pointer';
+  });
 
-  // <button onclick=
-  //     "show_image('http://google.com/images/logo.gif',
-  //                  276,
-  //                  110,
-  //                  'Google Logo');">Add Google Logo</button>
+  // Change it back to a pointer when it leaves.
+  map.on('mouseleave', 'unclustered-point', function () {
+    map.getCanvas().style.cursor = '';
+  });
+});
 
-  // // Ensure that if the map is zoomed out such that multiple
-  // // copies of the feature are visible, the popup appears
-  // // over the copy being pointed to.
-  // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-  // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-  // }
+
 
 
 </script>
