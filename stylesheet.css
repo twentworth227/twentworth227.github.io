@@ -7,6 +7,29 @@
   cursor: pointer;
   padding: 0;
 } */
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #D1DCE8;
+  margin-left: 15px;
+  margin-top: 15px;
+  font-family: 'Lato';
+  overflow: auto;
+  border-radius: 3px;
+}
+
+.map-overlay h3 {
+  color: #825915;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.map-overlay p {
+  color: #101112;
+  padding-left: 15px;
+  padding-right: 15px;
+}
 
 .mapboxgl-popup {
   max-width: 200px;
@@ -14,12 +37,13 @@
 
 .mapboxgl-popup-content {
   text-align: center;
-  font-family: 'Open Sans', sans-serif;
+  color: #101112;
+  font-family: 'Lato';
 }
 
 .btn {
-  padding: 15px;
-  color: #3E637D;
+  padding: 10px;
+  color: #294c70;
 }
 
 .far {

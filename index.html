@@ -17,6 +17,11 @@
 <body>
 
   <div id='map'></div>
+  <div class='map-overlay' id='features'>
+    <h3>Is there something you try to live by every day?</h3>
+    <p>I'm driving across the country asking people this question.<br>
+       Click on a point to hear how they respond!</p>
+  </div>
 
   <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidHdlbnR3b3J0aCIsImEiOiJjank3bmthZXEwMWN5M2hvMmVpZDV4aWhyIn0.aEBI-qd5b-yv7wbstwhLnA';
@@ -32,7 +37,7 @@
       "properties": {
         "unique_id": "1001",
         "title": "Thomas - Burlington, VT",
-        "description": "Listen to this silly song.",
+        "description": "July 15th, 2019",
         "url": "audio_files/upbeat_minor.mp3",
         "img_url": "pictures/first.jpg"
       }
@@ -45,7 +50,7 @@
     "properties": {
       "unique_id": "1002",
       "title": "Anderson - Middlebury, VT",
-      "description": "Milktoast.",
+      "description": "July 20th, 2019",
       "url": "audio_files/ner2.mp3",
       "img_url": "pictures/second.jpg"
     }
@@ -140,11 +145,11 @@ map.on('load', function() {
       "circle-color": [
         "step",
         ["get", "point_count"],
-        "#9E7131",
+        "#825915",
         100,
-        "#9E7131",
+        "#825915",
         750,
-        "#9E7131"
+        "#825915"
       ],
       "circle-radius": [
         "step",
@@ -176,7 +181,7 @@ map.on('load', function() {
     source: "points",
     filter: ["!", ["has", "point_count"]],
     paint: {
-      "circle-color": "#9E7131",
+      "circle-color": "#825915",
       "circle-radius": 5,
       "circle-stroke-width": 0, // .5
       "circle-stroke-color": "#fff"
