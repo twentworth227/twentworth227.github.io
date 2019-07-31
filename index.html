@@ -75,10 +75,10 @@ function play_pause(unique_id) {
   var audio = $(String(unique_id));
   var playicon = $("playstate");
   if (audio.paused) {
-    playicon.className = "fa fa-pause fa-3x";
+    playicon.className = "far fa-pause-circle fa-2x";
     audio.play();
   } else{
-    playicon.className = "fa fa-play fa-3x";
+    playicon.className = "far fa-play-circle fa-2x";
     audio.pause();
     // audio.currentTime = 0
   }
@@ -89,12 +89,12 @@ function stop(unique_id) {
   var stopicon = $("stopstate");
   var playicon = $("playstate");
   if (audio.playing) {
-    playicon.className = "fa fa-play fa-3x"
+    playicon.className = "far fa-play-circle fa-2x"
     audio.stop();
     audio.pause();
     audio.currentTime = 0;
   } else{
-    playicon.className = "fa fa-play fa-3x"
+    playicon.className = "far fa-play-circle fa-2x"
     audio.pause();
     audio.currentTime = 0;
   }
@@ -224,10 +224,10 @@ map.on('load', function() {
     new mapboxgl.Popup()
     .setLngLat(coordinates)
     .setHTML('<h3>' + title + '</h3><p>' + description + '</p>' +
-    '<img src=' + img_url + ' alt="could not display image" style="width:150px;height:150px;">' +
+    '<img src=' + img_url + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:150px;height:150px;">' +
     '<br>' + '<audio id=' + unique_id + ' src=' + url + '></audio>' +
-    '<a class="btn btn-default" data-toggle="tooltip" onClick="play_pause(' + unique_id + ')"><i id="playstate" class="fa fa-play fa-3x"></i></a>' +
-    '<a class="btn btn-default" data-toggle="tooltip" onClick="stop(' + unique_id + ')"><i id="stopstate" class="fa fa-stop fa-3x"></i></a>')
+    '<a class="btn btn-default" data-toggle="tooltip" onClick="play_pause(' + unique_id + ')"><i id="playstate" class="far fa-play-circle fa-2x"></i></a>' +
+    '<a class="btn btn-default" data-toggle="tooltip" onClick="stop(' + unique_id + ')"><i id="stopstate" class="far fa-stop-circle fa-2x"></i></a>')
     .addTo(map);
 
     });

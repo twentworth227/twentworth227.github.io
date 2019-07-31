@@ -18,6 +18,15 @@
 }
 
 .btn {
-  padding: 10px;
-  color: #182630;
+  padding: 15px;
+  color: #3E637D;
+}
+
+.far {
+  font-family: 'FontAwesome';
+  font-style: normal;
+}
+
+.img {
+  padding-bottom: 10px;
 }
