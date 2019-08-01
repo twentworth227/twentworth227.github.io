@@ -6,8 +6,13 @@
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
   <script src="https://use.fontawesome.com/ada9a9a588.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet' />
   <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
   <style>
   body { margin:0; padding:0; }
   #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -17,10 +22,13 @@
 <body>
 
   <div id='map'></div>
-  <div class='map-overlay' id='features'>
-    <h3>Is there something you try to live by every day?</h3>
-    <p>I'm driving across the country asking people this question.<br>
-       Click on a point to hear how they respond!</p>
+  <div class="map-overlay">
+    <div class="collapse in" id='features'>
+      <h3>Is there something you try to live by every day?</h3>
+      <p>I'm driving across the country asking people this question.<br>
+         Click on a point to hear how they respond!</p>
+    </div>
+      <button type="button" class="collapse-btn btn btn-dark" data-toggle="collapse" data-target="#features"><i class="far fa-minus-square fa-2x"></i></button>
   </div>
 
   <script>
@@ -61,8 +69,8 @@
 function $(x) {return document.getElementById(x);}
 
 var bounds = [
-  [-145, 18], // Southwest coordinates
-  [-59, 55]  // Northeast coordinates
+  [-155, 12], // Southwest coordinates
+  [-40, 55]  // Northeast coordinates
 ];
 
 
@@ -71,7 +79,7 @@ var map = new mapboxgl.Map({
   style: 'mapbox://styles/twentworth/cjy7nu17v04vz1cp69y5xka6g',
   center: [-96.5, 39],
   zoom: 4,
-  minZoom: 4,
+  minZoom: 3,
   maxBounds: bounds
 });
 
@@ -182,9 +190,9 @@ map.on('load', function() {
     filter: ["!", ["has", "point_count"]],
     paint: {
       "circle-color": "#825915",
-      "circle-radius": 5,
-      "circle-stroke-width": 0, // .5
-      "circle-stroke-color": "#fff"
+      "circle-radius": 6,
+      "circle-stroke-width": .5, // .5
+      "circle-stroke-color": "#84909a"
     }
   });
 
@@ -228,11 +236,11 @@ map.on('load', function() {
 
     new mapboxgl.Popup()
     .setLngLat(coordinates)
-    .setHTML('<h3>' + title + '</h3><p>' + description + '</p>' +
+    .setHTML('<h4>' + title + '</h4><p>' + description + '</p>' +
     '<img src=' + img_url + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:150px;height:150px;">' +
     '<br>' + '<audio id=' + unique_id + ' src=' + url + '></audio>' +
-    '<a class="btn btn-default" data-toggle="tooltip" onClick="play_pause(' + unique_id + ')"><i id="playstate" class="far fa-play-circle fa-2x"></i></a>' +
-    '<a class="btn btn-default" data-toggle="tooltip" onClick="stop(' + unique_id + ')"><i id="stopstate" class="far fa-stop-circle fa-2x"></i></a>')
+    '<a class="btn btn-light" data-toggle="tooltip" onClick="play_pause(' + unique_id + ')"><i id="playstate" class="far fa-play-circle fa-2x"></i></a>' +
+    '<a class="btn btn-light" data-toggle="tooltip" onClick="stop(' + unique_id + ')"><i id="stopstate" class="far fa-stop-circle fa-2x"></i></a>')
     .addTo(map);
 
     });

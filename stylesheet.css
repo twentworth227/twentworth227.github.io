@@ -7,6 +7,7 @@
   cursor: pointer;
   padding: 0;
 } */
+
 .map-overlay {
   position: absolute;
   top: 0;
@@ -15,6 +16,13 @@
   margin-left: 15px;
   margin-top: 15px;
   font-family: 'Lato';
+  overflow: auto;
+  border-radius: 3px;
+}
+
+.collapse-btn {
+  position: relative;
+  background: #D1DCE8;
   overflow: auto;
   border-radius: 3px;
 }
@@ -42,7 +50,6 @@
 }
 
 .btn {
-  padding: 10px;
   color: #294c70;
 }
 
