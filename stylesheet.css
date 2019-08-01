@@ -33,8 +33,9 @@
   padding-right: 15px;
 }
 
-.map-overlay p {
+.map-overlay h4 {
   color: #101112;
+  line-height: 22px;
   padding-left: 15px;
   padding-right: 15px;
 }
