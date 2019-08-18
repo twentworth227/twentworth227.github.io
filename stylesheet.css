@@ -1,12 +1,6 @@
-/* .marker {
-  background-image: url('marker_v2.svg');
-  width: 15px;
-  height: 15px;
-  display: block;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-} */
+audio {
+  width: 225px;
+}
 
 .map-overlay {
   position: absolute;
@@ -22,26 +16,25 @@
 
 .map-overlay h4 {
   color: #825915;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .map-overlay h5 {
   color: #101112;
   line-height: 22px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .collapse-btn {
   position: relative;
   background: #D1DCE8;
-  overflow: auto;
-  border-radius: 1px;
 }
 
 .mapboxgl-popup {
-  max-width: 200px;
+  max-width: 250px;
 }
 
 .mapboxgl-popup-content {
@@ -50,10 +43,6 @@
   color: #101112;
   font-family: 'Lato';
   padding: 0px;
-}
-
-.btn {
-  color: #294c70;
 }
 
 .far {

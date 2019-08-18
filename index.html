@@ -28,7 +28,7 @@
       <h5>I'm driving across the country asking people this question.<br>
          Click on a point to hear how they respond!</h5>
     </div>
-      <button type="button" class="collapse-btn btn btn-dark" data-toggle="collapse" data-target="#features"><i class="far fa-minus-square fa-2x"></i></button>
+      <button type="button" class="collapse-btn" data-toggle="collapse" data-target="#features"><i class="far fa-minus-square fa-2x"></i></button>
   </div>
 
   <script>
@@ -71,47 +71,6 @@ var map = new mapboxgl.Map({
   minZoom: 3,
   maxBounds: bounds
 });
-
-
-function play_pause(unique_id) {
-  var audio = $(String(unique_id));
-  var playicon = $("playstate");
-  if (audio.paused) {
-    playicon.className = "far fa-pause-circle fa-2x";
-    audio.play();
-  } else{
-    playicon.className = "far fa-play-circle fa-2x";
-    audio.pause();
-    // audio.currentTime = 0
-  }
-}
-
-function stop(unique_id) {
-  var audio = document.getElementById(String(unique_id));
-  var stopicon = $("stopstate");
-  var playicon = $("playstate");
-  if (audio.playing) {
-    playicon.className = "far fa-play-circle fa-2x"
-    audio.stop();
-    audio.pause();
-    audio.currentTime = 0;
-  } else{
-    playicon.className = "far fa-play-circle fa-2x"
-    audio.pause();
-    audio.currentTime = 0;
-  }
-}
-
-function show_image(src, width, height, alt) {
-  var img = document.createElement("img");
-  img.src = src;
-  img.width = 60;
-  img.height = 60;
-  img.alt = 'could not display image';
-
-  // This next line will just add it to the <body> tag
-  document.body.appendChild(img);
-}
 
 
 map.on('load', function() {
@@ -217,22 +176,12 @@ map.on('load', function() {
     var aud_url = e.features[0].properties.aud_url;
     var img_url = e.features[0].properties.img_url;
 
-    var audio = new Audio(aud_url);
-    audio.onloadedmetadata = function() {
-      time = audio.duration;
-      var minutes = (Math.floor(time / 60)).toString();
-      var seconds = (time - minutes * 60).toFixed(0).toString();
-
-      new mapboxgl.Popup()
-      .setLngLat(coordinates)
-      .setHTML('<h4>' + title + '</h4><p>' + location + '</br>' + description + '</p>' +
-      '<img src=' + img_url + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:160px;height:160px;">' +
-      '<br>' + '<audio id=' + unique_id + ' src=' + aud_url + '></audio>' +
-      '<a class="btn btn-light" data-toggle="tooltip" onClick="play_pause(' + unique_id + ')"><i id="playstate" class="far fa-play-circle fa-2x"></i></a>' +
-      + minutes + ':' + seconds +
-      '<a class="btn btn-light" data-toggle="tooltip" onClick="stop(' + unique_id + ')"><i id="stopstate" class="far fa-stop-circle fa-2x"></i></a>')
-      .addTo(map);
-    };
+    new mapboxgl.Popup()
+    .setLngLat(coordinates)
+    .setHTML('<h4>' + title + '</h4><p>' + location + '</br>' + description + '</p>' +
+    '<img src=' + img_url + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;">' +
+    '<br>' + '<audio controls id=' + unique_id + '><source src=' + aud_url + '></audio>')
+    .addTo(map);
 
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
