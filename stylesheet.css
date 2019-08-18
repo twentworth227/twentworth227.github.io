@@ -20,24 +20,24 @@
   border-radius: 3px;
 }
 
-.collapse-btn {
-  position: relative;
-  background: #D1DCE8;
-  overflow: auto;
-  border-radius: 3px;
-}
-
-.map-overlay h3 {
+.map-overlay h4 {
   color: #825915;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.map-overlay h4 {
+.map-overlay h5 {
   color: #101112;
   line-height: 22px;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.collapse-btn {
+  position: relative;
+  background: #D1DCE8;
+  overflow: auto;
+  border-radius: 1px;
 }
 
 .mapboxgl-popup {
@@ -49,6 +49,7 @@
   text-align: center;
   color: #101112;
   font-family: 'Lato';
+  padding: 0px;
 }
 
 .btn {
@@ -58,8 +59,4 @@
 .far {
   font-family: 'FontAwesome';
   font-style: normal;
-}
-
-.img {
-  padding-bottom: 10px;
 }
