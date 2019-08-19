@@ -31,7 +31,8 @@ audio {
 
 .collapse-btn {
   position: relative;
-  /* background: white; */
+  background: #84909a;
+  color: #142638;
 }
 
 .mapboxgl-popup {
