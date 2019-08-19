@@ -176,6 +176,12 @@ map.on('load', function() {
     var aud_url = e.features[0].properties.aud_url;
     var img_url = e.features[0].properties.img_url;
 
+    // map.flyTo({
+    //   center: coordinates,
+    //   zoom: 6,
+    //   speed: 0.75
+    //   });
+
     new mapboxgl.Popup()
     .setLngLat(coordinates)
     .setHTML('<h4>' + title + '</h4><p>' + location + '</br>' + description + '</p>' +
@@ -189,8 +195,6 @@ map.on('load', function() {
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
-
-
     });
 
   // Change the cursor to a pointer when the mouse is over the places layer.
