@@ -2,6 +2,23 @@ audio {
   width: 225px;
 }
 
+.title-overlay {
+  position: absolute;
+  margin-left: 20px;
+  font-family: 'Lato';
+}
+
+.title-overlay h3 {
+  color: #825915;
+  font-weight: 500;
+}
+
+.title-overlay h4 {
+  color: #84909A;
+  font-weight: 350;
+  text-align: right;
+}
+
 .map-overlay {
   position: absolute;
   top: 0;
