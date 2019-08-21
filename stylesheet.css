@@ -19,18 +19,16 @@ audio {
   text-align: right;
 }
 
-.map-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
+.info-overlay {
   background: white;
-  margin-left: 15px;
-  margin-top: 15px;
-  overflow: auto;
-  border-radius: 3px;
+  position: fixed;
+  left: 50%;
+  bottom: 0px;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
 }
 
-.map-overlay h4 {
+.info-overlay h4 {
   color: #825915;
   font-family: 'Lato';
   padding-top: 5px;
@@ -38,9 +36,9 @@ audio {
   padding-right: 10px;
 }
 
-.map-overlay h5 {
+.info-overlay h5 {
   color: #101112;
-  font-family: 'Romana';
+  font-family: 'Lato';
   line-height: 22px;
   padding-left: 10px;
   padding-right: 10px;
@@ -50,6 +48,11 @@ audio {
   position: relative;
   background: #84909a;
   color: #142638;
+  font-family: 'Lato';
+  font-size: 18px;
+  text-align:center;
+  border-width: 2px;
+  border-color: #132435;
 }
 
 .mapboxgl-popup {
