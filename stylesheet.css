@@ -20,28 +20,38 @@ audio {
 }
 
 .info-overlay {
-  background: white;
   position: fixed;
   left: 50%;
   bottom: 0px;
   transform: translate(-50%, -50%);
-  margin: 0 auto;
+}
+
+.collapse {
+  background: #84909a;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #132435;
 }
 
 .info-overlay h4 {
-  color: #825915;
+  color: #132435;
   font-family: 'Lato';
-  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 10px;
   padding-right: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .info-overlay h5 {
-  color: #101112;
+  color: #294C70;
   font-family: 'Lato';
-  line-height: 22px;
+  /* line-height: 12px; */
   padding-left: 10px;
   padding-right: 10px;
+  text-align: center;
+  font-size: 16px;
 }
 
 .collapse-btn {
@@ -51,6 +61,7 @@ audio {
   font-family: 'Lato';
   font-size: 18px;
   text-align:center;
+  border-style: solid;
   border-width: 2px;
   border-color: #132435;
 }
