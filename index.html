@@ -27,13 +27,17 @@
     <h4>Click a point to hear an answer.</h4>
   <div>
   <div class="info-overlay">
-    <div class="collapse in" id='features'>
+    <div class="collapse" id='features'>
       <h5>I'm driving across the country asking people one question:</h5>
       <h4>Is there something you try to live by every day?</h4>
     </div>
       <div class="text-center">
-      <!-- <button type="button" class="collapse-btn" data-toggle="collapse" data-target="#features"><i class="far fa-minus-square fa-2x"></i></button> -->
-        <button type="button" class="collapse-btn" data-toggle="collapse" data-target="#features"><i class="far fa-chevron-up"></i> Learn more <i class="far fa-chevron-up"></i></button>
+        <a class="collapse-btn text-toggle" data-toggle="collapse" data-target="#features" aria-expanded="false">
+          <span class="text-collapsed"><i class="far fa-chevron-up"></i> Learn more <i class="far fa-chevron-up"></i></span>
+          <span class="text-expanded"><i class="far fa-chevron-down"></i> Learn less <i class="far fa-chevron-down"></i></span>
+        </a>
+        <!-- <button type="button" class="collapse-btn" data-toggle="collapse" data-target="#features"><i class="far fa-minus-square fa-2x"></i></button> -->
+        <!-- <button type="button" class="collapse-btn" data-toggle="collapse" data-target="#features"><i class="far fa-chevron-up"></i> Learn more <i class="far fa-chevron-up"></i></button> -->
       </div>
   </div>
 
@@ -78,6 +82,18 @@ var map = new mapboxgl.Map({
   maxBounds: bounds
 });
 
+function play_pause(unique_id) {
+  var audio = $(String(unique_id));
+  var playicon = $("playstate");
+  if (audio.paused) {
+    playicon.className = "far fa-pause-circle fa-2x";
+    audio.play();
+  } else{
+    playicon.className = "far fa-play-circle fa-2x";
+    audio.pause();
+    // audio.currentTime = 0
+  }
+}
 
 map.on('load', function() {
   // Add a new source from our GeoJSON data and set the
@@ -190,10 +206,20 @@ map.on('load', function() {
 
     new mapboxgl.Popup()
     .setLngLat(coordinates)
-    .setHTML('<h4>' + title + '</h4><p>' + location + '</br>' + description + '</p>' +
-    '<img src=' + img_url + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;">' +
-    '<br>' + '<audio controls controlsList="nodownload" id=' + unique_id + '><source src=' + aud_url + '></audio>')
+    .setHTML(
+      '<div class="container nopadding"><div class="row nopadding"><div class="col-sm-7 nopadding">' +
+      '<h4>' + title + '</h4> \
+      <p>' + location + '</br>' + description + '</p></div>' +
+      '<div class="col-sm-3 nopadding teaser"><h5>Teaser</h5>' +
+      '<audio id=' + unique_id + ' src=' + aud_url + '></audio>' +
+      '<a class="btn-light" data-toggle="tooltip" onClick="play_pause(' + unique_id + ')"><i id="playstate" class="far fa-play-circle fa-2x"></i></a>' +
+      '</div><div class="col-sm-1"></div>' +
+      '<div class="row nopadding"><img src=' + img_url + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;">' +
+      '<br>' +
+      '<audio controls controlsList="nodownload" id=' + unique_id + '><source src=' + aud_url + '></audio></div></div>'
+    )
     .addTo(map);
+
 
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears

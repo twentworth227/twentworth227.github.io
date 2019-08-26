@@ -1,22 +1,25 @@
 audio {
   width: 225px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+
+a { cursor: pointer; }
+a:hover { text-decoration:none; }
 
 .title-overlay {
   position: absolute;
   margin-left: 20px;
   font-family: 'Lato';
 }
-
 .title-overlay h3 {
   color: #825915;
   font-weight: 500;
 }
-
 .title-overlay h4 {
   color: #84909A;
   font-weight: 350;
-  text-align: right;
+  /* text-align: right; */
 }
 
 .info-overlay {
@@ -25,14 +28,6 @@ audio {
   bottom: 0px;
   transform: translate(-50%, -50%);
 }
-
-.collapse {
-  background: #84909a;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #132435;
-}
-
 .info-overlay h4 {
   color: #132435;
   font-family: 'Lato';
@@ -43,7 +38,6 @@ audio {
   font-size: 16px;
   font-weight: 500;
 }
-
 .info-overlay h5 {
   color: #294C70;
   font-family: 'Lato';
@@ -54,29 +48,76 @@ audio {
   font-size: 16px;
 }
 
+.collapse {
+  background: #84909a;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 10px;
+  border-color: #132435;
+}
+
 .collapse-btn {
   position: relative;
   background: #84909a;
   color: #142638;
   font-family: 'Lato';
   font-size: 18px;
+  font-weight: 350;
   text-align:center;
   border-style: solid;
+  border-radius: 10px;
   border-width: 2px;
   border-color: #132435;
+  padding: 5px;
 }
 
+.text-toggle[aria-expanded=false] .text-expanded { display: none; }
+.text-toggle[aria-expanded=true] .text-collapsed { display: none; }
+
 .mapboxgl-popup {
-  max-width: 250px;
-  z-index:1000;
+  max-width: 225px;
+  /* z-index:1000; */
+}
+
+.container {
+  max-width: 225px;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
 }
 
 .mapboxgl-popup-content {
   /* background: #D1DCE8; */
-  text-align: center;
+  /* text-align: center; */
   color: #101112;
   font-family: 'Lato';
   padding: 0px;
+}
+.mapboxgl-popup-content h4 {
+  color: #132435;
+  padding-left: 12px;
+}
+.mapboxgl-popup-content h5 {
+  padding-top: 20px;
+  font-size: 12px;
+  color: #294C70;
+}
+.mapboxgl-popup-content p {
+  font-size: 12px;
+  color: #294C70;
+  padding-left: 12px;
+}
+
+.teaser {
+  padding-left: 0px;
+  padding-top: 30px;
+  text-align: center;
+}
+
+.btn-light {
+  color: #294C70;
 }
 
 .far {
