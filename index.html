@@ -57,7 +57,6 @@
         "title": "Meredith",
         "location": "Burlington, VT",
         "description": "August 7th, 2019",
-        "teaser_url": "audio_files/080719_meredith_teaser.mp3",
         "aud_url": "audio_files/080719_meredith_final.mp3",
         "img_url": "pictures/080719_meredith.jpg"
       }
@@ -124,11 +123,11 @@ map.on('load', function() {
       "circle-color": [
         "step",
         ["get", "point_count"],
-        "#825915",
+        "#8C541C",
         100,
-        "#825915",
+        "#8C541C",
         750,
-        "#825915"
+        "#8C541C"
       ],
       "circle-radius": [
         "step",
@@ -160,7 +159,7 @@ map.on('load', function() {
     source: "points",
     filter: ["!", ["has", "point_count"]],
     paint: {
-      "circle-color": "#825915",
+      "circle-color": "#8C541C",
       "circle-radius": 6,
       "circle-stroke-width": .25, // .5
       "circle-stroke-color": "#84909a"
@@ -209,16 +208,13 @@ map.on('load', function() {
     new mapboxgl.Popup()
     .setLngLat(coordinates)
     .setHTML(
-      '<div class="container nopadding"><div class="row nopadding"><div class="col-sm-7 nopadding">' +
-      '<h4>' + title + '</h4> \
+      '<div class="container nopadding">' + '<h4>' + title + '</h4> \
       <p>' + location + '</br>' + description + '</p></div>' +
-      '<div class="col-sm-3 nopadding teaser"><h5>Teaser</h5>' +
-      '<audio id=' + unique_id + ' src=' + teaser_url + '></audio>' +
-      '<a class="btn-light" data-toggle="tooltip" onClick="play_pause(' + unique_id + ')"><i id="playstate" class="far fa-play-circle fa-2x"></i></a>' +
-      '</div><div class="col-sm-1"></div>' +
-      '<div class="row nopadding"><img src=' + img_url + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;">' +
+      '<div class="row nopadding"><img src=' + img_url +
+      ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;">' +
       '<br>' +
-      '<audio controls controlsList="nodownload" id=' + unique_id + '><source src=' + aud_url + '></audio></div></div>'
+      '<audio controls controlsList="nodownload" id=' + unique_id + '><source src=' +
+      aud_url + '></audio></div></div>'
     )
     .addTo(map);
 

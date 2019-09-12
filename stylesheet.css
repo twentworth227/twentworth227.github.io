@@ -13,11 +13,11 @@ a:hover { text-decoration:none; }
   font-family: 'Lato';
 }
 .title-overlay h3 {
-  color: #825915;
+  color: #8C541C;
   font-weight: 500;
 }
 .title-overlay h4 {
-  color: #84909A;
+  color: #6E7881;
   font-weight: 350;
   /* text-align: right; */
 }
@@ -29,7 +29,7 @@ a:hover { text-decoration:none; }
   transform: translate(-50%, -50%);
 }
 .info-overlay h4 {
-  color: #132435;
+  color: #003140;
   font-family: 'Lato';
   padding-bottom: 5px;
   padding-left: 10px;
@@ -39,7 +39,7 @@ a:hover { text-decoration:none; }
   font-weight: 500;
 }
 .info-overlay h5 {
-  color: #294C70;
+  color: #6E7881;
   font-family: 'Lato';
   /* line-height: 12px; */
   padding-left: 10px;
@@ -49,25 +49,25 @@ a:hover { text-decoration:none; }
 }
 
 .collapse {
-  background: #84909a;
+  background: #EDEDED;
   border-style: solid;
   border-width: 2px;
-  border-radius: 10px;
-  border-color: #132435;
+  border-radius: 5px;
+  border-color: #6E7881;
 }
 
 .collapse-btn {
   position: relative;
-  background: #84909a;
-  color: #142638;
+  background: #6E7881;
+  color: #EDEDED;
   font-family: 'Lato';
   font-size: 18px;
-  font-weight: 350;
+  font-weight: 300;
   text-align:center;
   border-style: solid;
-  border-radius: 10px;
-  border-width: 2px;
-  border-color: #132435;
+  border-radius: 5px;
+  border-width: 0px;
+  border-color: #EDEDED;
   padding: 5px;
 }
 
@@ -89,35 +89,26 @@ a:hover { text-decoration:none; }
 }
 
 .mapboxgl-popup-content {
-  /* background: #D1DCE8; */
-  /* text-align: center; */
-  color: #101112;
   font-family: 'Lato';
   padding: 0px;
 }
 .mapboxgl-popup-content h4 {
-  color: #132435;
+  color: #003140;
   padding-left: 12px;
 }
 .mapboxgl-popup-content h5 {
   padding-top: 20px;
   font-size: 12px;
-  color: #294C70;
+  color: #6E7881;
 }
 .mapboxgl-popup-content p {
   font-size: 12px;
-  color: #294C70;
+  color: #6E7881;
   padding-left: 12px;
 }
 
-.teaser {
-  padding-left: 0px;
-  padding-top: 30px;
-  text-align: center;
-}
-
 .btn-light {
-  color: #294C70;
+  color: #6E7881;
 }
 
 .far {
