@@ -123,19 +123,6 @@ var map = new mapboxgl.Map({
   maxBounds: bounds
 });
 
-function play_pause(unique_id) {
-  var audio = $(String(unique_id));
-  var playicon = $("playstate");
-  if (audio.paused) {
-    playicon.className = "far fa-pause-circle fa-2x";
-    audio.play();
-  } else{
-    playicon.className = "far fa-play-circle fa-2x";
-    audio.pause();
-    // audio.currentTime = 0
-  }
-}
-
 map.on('load', function() {
   // Add a new source from our GeoJSON data and set the
   // 'cluster' option to true. GL-JS will add the point_count property to your source data.
@@ -145,8 +132,8 @@ map.on('load', function() {
     // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
     data: geojson,
     cluster: true,
-    clusterMaxZoom: 14, // Max zoom to cluster points on
-    clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
+    clusterMaxZoom: 12, // Max zoom to cluster points on
+    clusterRadius: 40 // Radius of each cluster when clustering points (defaults to 50)
   });
 
   map.addLayer({
