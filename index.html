@@ -48,21 +48,62 @@
     "type": "FeatureCollection",
     "features": [
       { "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [-73.211448, 44.476960]
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-73.211448, 44.476960]
+        },
+        "properties": {
+          "unique_id": "1001",
+          "title": "Meredith",
+          "description": "Food Systems Professor",
+          "loc_date": "Burlington, VT - August 7th, 2019",
+          "aud_url": "audio_files/080719_meredith_final.mp3",
+          "img_url": "pictures/080719_meredith.jpg"
+        }
       },
-      "properties": {
-        "unique_id": "1001",
-        "title": "Meredith",
-        "location": "Burlington, VT",
-        "description": "August 7th, 2019",
-        "aud_url": "audio_files/080719_meredith_final.mp3",
-        "img_url": "pictures/080719_meredith.jpg"
-      }
-    },
-
-]
+      { "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-73.212189, 44.482099]
+        },
+        "properties": {
+          "unique_id": "1002",
+          "title": "Charlotte",
+          "description": '"Char-colorful"',
+          "loc_date": "Burlington, VT - August 9th, 2019",
+          "aud_url": "audio_files/080719_char_final.mp3",
+          "img_url": "pictures/080919_charlotte.jpg"
+        }
+      },
+      { "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-73.209905, 44.477359]
+        },
+        "properties": {
+          "unique_id": "1003",
+          "title": "Georgia-Grace",
+          "description": '"Yes-Woman"',
+          "loc_date": "Burlington, VT - August 9th, 2019",
+          "aud_url": "audio_files/080919_gg_final.mp3",
+          "img_url": "pictures/080919_gg.jpg"
+        }
+      },
+      { "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [-73.211510, 44.463572]
+        },
+        "properties": {
+          "unique_id": "1004",
+          "title": "Jessie",
+          "description": '"Activity person"',
+          "loc_date": "Burlington, VT - August 9th, 2019",
+          "aud_url": "audio_files/080919_jessie_final.mp3",
+          "img_url": "pictures/080919_jessie.jpg"
+        }
+      },
+  ]
 };
 
 function $(x) {return document.getElementById(x);}
@@ -193,7 +234,7 @@ map.on('load', function() {
     var coordinates = e.features[0].geometry.coordinates.slice();
     var unique_id = e.features[0].properties.unique_id;
     var title = e.features[0].properties.title;
-    var location = e.features[0].properties.location;
+    var loc_date = e.features[0].properties.loc_date;
     var description = e.features[0].properties.description;
     var teaser_url = e.features[0].properties.teaser_url;
     var aud_url = e.features[0].properties.aud_url;
@@ -209,7 +250,7 @@ map.on('load', function() {
     .setLngLat(coordinates)
     .setHTML(
       '<div class="container nopadding">' + '<h4>' + title + '</h4> \
-      <p>' + location + '</br>' + description + '</p></div>' +
+      <p>' + description + '</br>' + loc_date + '</p></div>' +
       '<div class="row nopadding"><img src=' + img_url +
       ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;">' +
       '<br>' +
