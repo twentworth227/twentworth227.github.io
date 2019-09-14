@@ -97,13 +97,6 @@ a:hover { text-decoration:none; }
   padding-left: 12px;
   margin-bottom: 5px;
 }
-.mapboxgl-popup-content pb {
-  font-size: 12px;
-  color: #003140;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  padding-left: 12px;
-}
 .mapboxgl-popup-content p {
   font-size: 12px;
   color: #6E7881;
