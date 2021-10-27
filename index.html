@@ -4,14 +4,14 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170291980-1"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    gtag('config', 'UA-170291980-1');
+  gtag('config', 'UA-170291980-1');
   </script>
   <meta charset='utf-8' />
-  <title>liveby</title>
+  <title>Wentuini</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
   <script src="https://use.fontawesome.com/ada9a9a588.js"></script>
@@ -30,414 +30,243 @@
 </head>
 <body>
   <div id='map'></div>
+  <nav id="filter-group" class="filter-group"></nav>
   <div class="title-overlay">
-    <h3><u>Is there something you try to live by every day?</u></h3>
-    <h4>Click a point to hear an answer.</h4>
-  <div>
-  <div class="info-overlay">
-    <div class="collapse" id='features'>
-      <h5>I drove across the country asking people one question:</h5>
-      <h4>Is there something you try to live by every day?</h4>
-    </div>
-      <div class="text-center">
+    <h3><u>Juliette and Thomas' favorite places :)</u></h3>
+    <h4>Click a point to see the name and location.</h4>
+    <div>
+      <div class="info-overlay">
+        <div class="collapse" id='features'>
+          <h5>I drove across the country asking people one question:</h5>
+          <h4>Is there something you try to live by every day?</h4>
+        </div>
+        <!-- <div class="text-center">
         <a class="collapse-btn text-toggle" data-toggle="collapse" data-target="#features" aria-expanded="false">
-          <span class="text-collapsed"><i class="far fa-chevron-up"></i> Learn more <i class="far fa-chevron-up"></i></span>
-          <span class="text-expanded"><i class="far fa-chevron-down"></i> Learn less <i class="far fa-chevron-down"></i></span>
-        </a>
-        <!-- <button type="button" class="collapse-btn" data-toggle="collapse" data-target="#features"><i class="far fa-minus-square fa-2x"></i></button> -->
-        <!-- <button type="button" class="collapse-btn" data-toggle="collapse" data-target="#features"><i class="far fa-chevron-up"></i> Learn more <i class="far fa-chevron-up"></i></button> -->
-      </div>
+        <span class="text-collapsed"><i class="far fa-chevron-up"></i> Learn more <i class="far fa-chevron-up"></i></span>
+        <span class="text-expanded"><i class="far fa-chevron-down"></i> Learn less <i class="far fa-chevron-down"></i></span>
+      </a>
+    </div> -->
   </div>
 
   <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidHdlbnR3b3J0aCIsImEiOiJjank3bmthZXEwMWN5M2hvMmVpZDV4aWhyIn0.aEBI-qd5b-yv7wbstwhLnA';
 
-  var geojson = {
+  const points = {
     "type": "FeatureCollection",
     "features": [
       { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.211448, 44.476960]
-        },
-        "properties": {
-          "unique_id": "1001",
-          "title": "Meredith",
-          "loc_date": "Burlington, VT - 8/7/19",
-          "aud_url": "audio_files/080719_meredith.mp3",
-          "img_url": "pictures/080719_meredith.jpg"
-        }
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.281910, 40.017800]
       },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.212189, 44.482099]
-        },
-        "properties": {
-          "unique_id": "1002",
-          "title": "Charlotte",
-          "loc_date": "Burlington, VT - 8/9/19",
-          "aud_url": "audio_files/080919_char.mp3",
-          "img_url": "pictures/080919_charlotte.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.200448, 44.482528]
-        },
-        "properties": {
-          "unique_id": "1003",
-          "title": "Georgia-Grace",
-          "loc_date": "Burlington, VT - 8/9/19",
-          "aud_url": "audio_files/080919_gg.mp3",
-          "img_url": "pictures/080919_gg.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.211510, 44.463572]
-        },
-        "properties": {
-          "unique_id": "1004",
-          "title": "Jessie",
-          "loc_date": "Burlington, VT - 8/9/19",
-          "aud_url": "audio_files/080919_jessie.mp3",
-          "img_url": "pictures/080919_jessie.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-71.422223, 43.672046]
-        },
-        "properties": {
-          "unique_id": "1005",
-          "title": "Kipling",
-          "loc_date": "Three Mile Island, NH - 8/9/19",
-          "aud_url": "audio_files/080919_kipling.mp3",
-          "img_url": "pictures/080919_kipling.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-71.424187, 43.671151]
-        },
-        "properties": {
-          "unique_id": "1006",
-          "title": "Nick",
-          "loc_date": "Three Mile Island, NH - 8/9/19",
-          "aud_url": "audio_files/080919_nickH.mp3",
-          "img_url": "pictures/080919_nick.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-72.876555, 44.374578]
-        },
-        "properties": {
-          "unique_id": "1007",
-          "title": "Mike",
-          "loc_date": "Bolton, VT - 8/11/19",
-          "aud_url": "audio_files/081119_mikeP.mp3",
-          "img_url": "pictures/081119_mike.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.253642, 44.502104]
-        },
-        "properties": {
-          "unique_id": "1008",
-          "title": "Miyo",
-          "loc_date": "Burlington, VT - 8/13/19",
-          "aud_url": "audio_files/081319_miyo.mp3",
-          "img_url": "pictures/081319_miyo.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.165360, 44.013865]
-        },
-        "properties": {
-          "unique_id": "1009",
-          "title": "Nick",
-          "loc_date": "Middlebury, VT - 8/13/19",
-          "aud_url": "audio_files/081319_nickL.mp3",
-          "img_url": "pictures/081319_nick.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-70.986282, 42.972778]
-        },
-        "properties": {
-          "unique_id": "1010",
-          "title": "Robert",
-          "loc_date": "Exeter, NH - 8/16/19",
-          "aud_url": "audio_files/081619_bob.mp3",
-          "img_url": "pictures/081619_bob.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-70.787875, 43.088400]
-        },
-        "properties": {
-          "unique_id": "1011",
-          "title": "Jake",
-          "loc_date": "Portsmouth, NH - 8/24/19",
-          "aud_url": "audio_files/082419_jat.mp3",
-          "img_url": "pictures/082419_jake.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-71.123187, 42.370870]
-        },
-        "properties": {
-          "unique_id": "1012",
-          "title": "Nick",
-          "loc_date": "Cambridge, MA - 8/27/19",
-          "aud_url": "audio_files/082719_nickHu.mp3",
-          "img_url": "pictures/082719_nick.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-70.292414, 43.650239]
-        },
-        "properties": {
-          "unique_id": "1013",
-          "title": "Juliette",
-          "loc_date": "Portland, ME - 9/16/19",
-          "aud_url": "audio_files/091619_juliette.mp3",
-          "img_url": "pictures/091619_juliette.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.1712004, 43.9726143]
-        },
-        "properties": {
-          "unique_id": "1014",
-          "title": "Isabel",
-          "loc_date": "Cornwall, VT - 8/3/19",
-          "aud_url": "audio_files/080319_isabel.mp3",
-          "img_url": "pictures/080319_isabel.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.1469810, 43.9756036]
-        },
-        "properties": {
-          "unique_id": "1015",
-          "title": "Nell",
-          "loc_date": "Cornwall, VT - 8/3/19",
-          "aud_url": "audio_files/080319_nell.mp3",
-          "img_url": "pictures/080319_nell.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-71.127324, 42.374888]
-        },
-        "properties": {
-          "unique_id": "1016",
-          "title": "Rand",
-          "loc_date": "Cambridge, MA - 9/19/19",
-          "aud_url": "audio_files/091919_rand.mp3",
-          "img_url": "pictures/091919_rand.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-71.131997, 42.376572]
-        },
-        "properties": {
-          "unique_id": "1017",
-          "title": "Sue",
-          "loc_date": "Cambridge, MA - 9/19/19",
-          "aud_url": "audio_files/091919_sue.mp3",
-          "img_url": "pictures/091919_sue.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-73.944265, 40.709142]
-        },
-        "properties": {
-          "unique_id": "1018",
-          "title": "Alex",
-          "loc_date": "Brooklyn, NY - 9/28/19",
-          "aud_url": "audio_files/092819_alexB.mp3",
-          "img_url": "pictures/092819_alex.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-76.454331, 39.035202]
-        },
-        "properties": {
-          "unique_id": "1019",
-          "title": "Bryan",
-          "loc_date": "Annaplis, MD - 10/01/19",
-          "aud_url": "audio_files/100119_bryan.mp3",
-          "img_url": "pictures/100119_bryan.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-79.125120, 36.188933]
-        },
-        "properties": {
-          "unique_id": "1020",
-          "title": "Cheri / Tea",
-          "loc_date": "Cedar Grove, NC - 10/03/19",
-          "aud_url": "audio_files/100319_cheritea.mp3",
-          "img_url": "pictures/100319_cheritea.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-79.228794, 36.256972]
-        },
-        "properties": {
-          "unique_id": "1021",
-          "title": "Rob",
-          "loc_date": "Cedar Grove, NC - 10/03/19",
-          "aud_url": "audio_files/100319_rob.mp3",
-          "img_url": "pictures/100319_rob.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-84.020568, 34.245897]
-        },
-        "properties": {
-          "unique_id": "1022",
-          "title": "Mildred",
-          "loc_date": "Cumming, GA - 10/07/19",
-          "aud_url": "audio_files/100719_mildred.mp3",
-          "img_url": "pictures/100719_mildred.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-86.801357, 36.145874]
-        },
-        "properties": {
-          "unique_id": "1023",
-          "title": "Lizzie",
-          "loc_date": "Nashville, TN - 10/09/19",
-          "aud_url": "audio_files/100919_lizzie.mp3",
-          "img_url": "pictures/100919_lizzie.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-90.029184, 35.122110]
-        },
-        "properties": {
-          "unique_id": "1024",
-          "title": "Margaret / Ed",
-          "loc_date": "Memphis, TN - 10/09/19",
-          "aud_url": "audio_files/100919_margareted.mp3",
-          "img_url": "pictures/100919_margareted.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-97.471601, 35.612204]
-        },
-        "properties": {
-          "unique_id": "1025",
-          "title": "Noah / Isabelle",
-          "loc_date": "Edmund, OK - 10/13/19",
-          "aud_url": "audio_files/101319_noahisabelle.mp3",
-          "img_url": "pictures/101319_noahisabelle.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-104.934008, 38.855551]
-        },
-        "properties": {
-          "unique_id": "1026",
-          "title": "Rory",
-          "loc_date": "Colorado Springs, CO - 10/19/19",
-          "aud_url": "audio_files/101919_rory.mp3",
-          "img_url": "pictures/101919_rory.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-112.066294, 33.506756]
-        },
-        "properties": {
-          "unique_id": "1027",
-          "title": "Rosemarie",
-          "loc_date": "Phoenix, AZ - 11/03/19",
-          "aud_url": "audio_files/110319_rosemarie.mp3",
-          "img_url": "pictures/110319_rosemarie.jpg"
-        }
-      },
-      { "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [-119.510631, 34.405398]
-        },
-        "properties": {
-          "unique_id": "1028",
-          "title": "Will",
-          "loc_date": "Carpinteria, CA - 11/10/19",
-          "aud_url": "audio_files/111019_will.mp3",
-          "img_url": "pictures/111019_will.jpg"
-        }
+      "properties": {
+        "unique_id": "1001",
+        "title": "Next Door American Eatery",
+        "address": "1035 Pearl St, Boulder, CO 80302",
+        "icon": "restaurant-15"
       }
-  ]
-};
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.264880, 40.020690]
+      },
+      "properties": {
+        "unique_id": "1002",
+        "title": "River and Woods",
+        "address": "2328 Pearl St, Boulder, CO 80302",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-70.255410, 43.666030]
+      },
+      "properties": {
+        "unique_id": "1003",
+        "title": "Baharat",
+        "address": "91 Anderson St, Portland, ME 04101",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.211040, 44.480980]
+      },
+      "properties": {
+        "unique_id": "1004",
+        "title": "Shalimar of India",
+        "address": "16 N Winooski Ave, Burlington, VT 05401",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.277040, 40.018760]
+      },
+      "properties": {
+        "unique_id": "1005",
+        "title": "Avanti Food and Beverage",
+        "address": "1401 Pearl St, Boulder, CO 80302",
+        "icon": "bar-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.284409, 40.016201]
+      },
+      "properties": {
+        "unique_id": "1006",
+        "title": "Sherpa Restaurant",
+        "address": "825 Walnut St, Boulder, CO 80302",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.281630, 40.017860]
+      },
+      "properties": {
+        "unique_id": "1007",
+        "title": "Ash'Kara",
+        "address": "1043 Pearl St, Boulder, CO 80302",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.259430, 40.030048]
+      },
+      "properties": {
+        "unique_id": "1008",
+        "title": "Rayback Collective",
+        "address": "2775 Valmont Rd, Boulder, CO 80304",
+        "icon": "bar-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.249860, 39.984390]
+      },
+      "properties": {
+        "unique_id": "1009",
+        "title": "Tandoori Grill",
+        "address": "619 S Broadway, Boulder, CO 80305",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.280683, 40.025155]
+      },
+      "properties": {
+        "unique_id": "1010",
+        "title": "Audrey Jane's Pizza Garage",
+        "address": "2675 13th St, Boulder, CO 80304",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-70.270611, 43.653212]
+      },
+      "properties": {
+        "unique_id": "1011",
+        "title": "Tandem Coffee and Bakery",
+        "address": "742 Congress St, Portland, ME 04102",
+        "icon": "bakery-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.212434, 44.476096]
+      },
+      "properties": {
+        "unique_id": "1012",
+        "title": "Honey Road",
+        "address": "156 Church St, Burlington, VT 05401",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.211217, 44.480791]
+      },
+      "properties": {
+        "unique_id": "1013",
+        "title": "¡Duino! (Duende)",
+        "address": "10 N Winooski Ave, Burlington, VT 05401",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-108.543203, 39.107863]
+      },
+      "properties": {
+        "unique_id": "1014",
+        "title": "Denny's",
+        "address": "710 Horizon Dr, Grand Junction, CO 81506",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.078129, 44.132988]
+      },
+      "properties": {
+        "unique_id": "1015",
+        "title": "The Bobcat Cafe and Brewery",
+        "address": "5 Main St, Bristol, VT 05443",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.431447, 34.043674]
+      },
+      "properties": {
+        "unique_id": "1016",
+        "title": "The Bigg Chill",
+        "address": "10850 W Olympic Blvd, Los Angeles, CA 90064",
+        "icon": "ice-cream-15"
+      }
+      }
+      ]
+      };
+
+const filterGroup = document.getElementById('filter-group');
 
 function $(x) {return document.getElementById(x);}
 
-var bounds = [
+const bounds = [
   [-155, 12], // Southwest coordinates
   [-40, 55]  // Northeast coordinates
 ];
 
 
-var map = new mapboxgl.Map({
+const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/twentworth/cinnf629w002yadncdunzrfqi',
   center: [-96.5, 39],
   zoom: 4,
   minZoom: 3,
   maxBounds: bounds,
-  maxZoom: 13
+  maxZoom: 17
 });
 
 // map.on('load', function() {
@@ -481,12 +310,22 @@ map.on('load', function() {
   // 'cluster' option to true. GL-JS will add the point_count property to your source data.
   map.addSource("points", {
     type: "geojson",
-    // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+    // Point to GeoJSON data.
     // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-    data: geojson,
+    data: points,
     cluster: true,
     clusterMaxZoom: 12, // Max zoom to cluster points on
     clusterRadius: 40 // Radius of each cluster when clustering points (defaults to 50)
+  });
+
+  map.addLayer({
+    'id': 'places',
+    'type': 'symbol',
+    'source': 'points',
+    'layout': {
+      'icon-image': '{icon}',
+      'icon-allow-overlap': true
+    }
   });
 
   map.addLayer({
@@ -505,18 +344,18 @@ map.on('load', function() {
         "step",
         ["get", "point_count"],
         "#8C541C",
-        100,
+        2,
         "#8C541C",
-        750,
+        10,
         "#8C541C"
       ],
       "circle-radius": [
         "step",
         ["get", "point_count"],
         20,
-        100,
+        5,
         30,
-        750,
+        10,
         40
       ]
     }
@@ -534,19 +373,111 @@ map.on('load', function() {
     }
   });
 
-  map.addLayer({
-    id: "unclustered-point",
-    type: "circle",
-    source: "points",
-    filter: ["!", ["has", "point_count"]],
-    paint: {
-      "circle-color": "#8C541C",
-      "circle-radius": 6,
-      "circle-stroke-width": .25, // .5
-      "circle-stroke-color": "#84909a"
+  // When a click event occurs on a feature in the places layer, open a popup at the
+  // location of the feature, with description HTML from its properties.
+  map.on('click', 'places', (e) => {
+    // Copy coordinates array.
+    const coordinates = e.features[0].geometry.coordinates.slice();
+    const title = e.features[0].properties.title;
+    const address = e.features[0].properties.address;
+
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+
+    new mapboxgl.Popup()
+    .setLngLat(coordinates)
+    .setHTML(
+      '<div class="container nopadding">' + '<h4>' + title + '</h4> \
+      <p>' + address + '</p></div>' +
+      // '<div class="row nopadding"><img src=' + img_url
+      // + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;"></div>' +
+      '</div>'
+    )
+    .addTo(map);
+
+
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
   });
 
+  // Change the cursor to a pointer when the mouse is over the places layer.
+  map.on('mouseenter', 'places', () => {
+    map.getCanvas().style.cursor = 'pointer';
+  });
+
+  // Change it back to a pointer when it leaves.
+  map.on('mouseleave', 'places', () => {
+    map.getCanvas().style.cursor = '';
+  });
+
+
+  // for (const feature of points.features) {
+  //   const symbol = feature.properties.icon;
+  //   const layerID = `poi-${symbol}`;
+
+  //
+  // map.addLayer({
+  //   id: "unclustered-point",
+  //   type: "circle",
+  //   source: "points",
+  //   filter: ["!", ["has", "point_count"]],
+  //   paint: {
+  //     "circle-color": "#e7e9e9",
+  //     "circle-radius": 12,
+  //     "circle-stroke-width": .5, // .5
+  //     "circle-stroke-color": "#84909a"
+  //   }
+  // });
+
+  //     // Add a layer for this symbol type if it hasn't been added already.
+  //     if (!map.getLayer(layerID)) {
+  //       map.addLayer({
+  //         'id': layerID,
+  //         'type': 'symbol',
+  //         'source': 'points',
+  //         'layout': {
+  //           // These icons are a part of the Mapbox Light style.
+  //           // To view all images available in a Mapbox style, open
+  //           // the style in Mapbox Studio and click the "Images" tab.
+  //           // To add a new image to the style at runtime see
+  //           // https://docs.mapbox.com/mapbox-gl-js/example/add-image/
+  //           'icon-image': `${symbol}-15`,
+  //           'icon-allow-overlap': true
+  //         },
+  //         'filter': ['==', 'icon', symbol]
+  //       });
+  //
+  //       // Add checkbox and label elements for the layer.
+  //       const input = document.createElement('input');
+  //       input.type = 'checkbox';
+  //       input.id = layerID;
+  //       input.checked = true;
+  //       filterGroup.appendChild(input);
+  //
+  //       const label = document.createElement('label');
+  //       label.setAttribute('for', layerID);
+  //       label.textContent = symbol;
+  //       filterGroup.appendChild(label);
+  //
+  //       // When the checkbox changes, update the visibility of the layer.
+  //       input.addEventListener('change', (e) => {
+  //         map.setLayoutProperty(
+  //           layerID,
+  //           'visibility',
+  //           e.target.checked ? 'visible' : 'none'
+  //         );
+  //       });
+  //     }
+  //   }
+  //
   // inspect a cluster on click
   map.on('click', 'clusters', function (e) {
     var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
@@ -568,56 +499,55 @@ map.on('load', function() {
   map.on('mouseleave', 'clusters', function () {
     map.getCanvas().style.cursor = '';
   });
-
-
-  map.on('click', 'unclustered-point', function (e) {
-    var coordinates = e.features[0].geometry.coordinates.slice();
-    var unique_id = e.features[0].properties.unique_id;
-    var title = e.features[0].properties.title;
-    var loc_date = e.features[0].properties.loc_date;
-    var description = e.features[0].properties.description;
-    var teaser_url = e.features[0].properties.teaser_url;
-    var aud_url = e.features[0].properties.aud_url;
-    var img_url = e.features[0].properties.img_url;
-
-    // map.flyTo({
-    //   center: coordinates,
-    //   zoom: 6,
-    //   speed: 0.75
-    //   });
-
-    new mapboxgl.Popup()
-    .setLngLat(coordinates)
-    .setHTML(
-      '<div class="container nopadding">' + '<h4>' + title + '</h4> \
-      <p>' + loc_date + '</p></div>' +
-      '<div class="row nopadding"><img src=' + img_url +
-      ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;">' +
-      '<br>' +
-      '<audio controls controlsList="nodownload" id=' + unique_id + '><source src=' +
-      aud_url + '></audio></div></div>'
-    )
-    .addTo(map);
-
-
-    // Ensure that if the map is zoomed out such that multiple
-    // copies of the feature are visible, the popup appears
-    // over the copy being pointed to.
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    }
-    });
-
-  // Change the cursor to a pointer when the mouse is over the places layer.
-  map.on('mouseenter', 'unclustered-point', function () {
-    map.getCanvas().style.cursor = 'pointer';
-  });
-
-  // Change it back to a pointer when it leaves.
-  map.on('mouseleave', 'unclustered-point', function () {
-    map.getCanvas().style.cursor = '';
-  });
+  //
+  //
+  //   map.on('click', 'unclustered-point', function (e) {
+  //     var coordinates = e.features[0].geometry.coordinates.slice();
+  //     var unique_id = e.features[0].properties.unique_id;
+  //     var title = e.features[0].properties.title;
+  //     var address = e.features[0].properties.address;
+  //     var description = e.features[0].properties.description;
+  //     var teaser_url = e.features[0].properties.teaser_url;
+  //     var img_url = e.features[0].properties.img_url;
+  //
+  //     // map.flyTo({
+  //     //   center: coordinates,
+  //     //   zoom: 6,
+  //     //   speed: 0.75
+  //     //   });
+  //
+  //     new mapboxgl.Popup()
+  //     .setLngLat(coordinates)
+  //     .setHTML(
+  //       '<div class="container nopadding">' + '<h4>' + title + '</h4> \
+  //       <p>' + address + '</p></div>' +
+  //       // '<div class="row nopadding"><img src=' + img_url
+  //       // + ' alt="could not display image" style="padding:0px 0px 5px 0px;width:225px;"></div>' +
+  //       '</div>'
+  //     )
+  //     .addTo(map);
+  //
+  //
+  //     // Ensure that if the map is zoomed out such that multiple
+  //     // copies of the feature are visible, the popup appears
+  //     // over the copy being pointed to.
+  //     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+  //       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+  //     }
+  //   });
+  //
+  //   // Change the cursor to a pointer when the mouse is over the places layer.
+  //   map.on('mouseenter', 'unclustered-point', function () {
+  //     map.getCanvas().style.cursor = 'pointer';
+  //   });
+  //
+  //   // Change it back to a pointer when it leaves.
+  //   map.on('mouseleave', 'unclustered-point', function () {
+  //     map.getCanvas().style.cursor = '';
+  //   });
 });
+
+
 
 // Add zoom and rotation controls to the map.
 var nav = new mapboxgl.NavigationControl();
