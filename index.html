@@ -245,6 +245,90 @@
         "address": "10850 W Olympic Blvd, Los Angeles, CA 90064",
         "icon": "ice-cream-15"
       }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.169624, 44.015006]
+      },
+      "properties": {
+        "unique_id": "1017",
+        "title": "American Flatbread",
+        "address": "137 Maple St, Middlebury, VT 05753",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.212590, 44.478089]
+      },
+      "properties": {
+        "unique_id": "1018",
+        "title": "Dobra Tea",
+        "address": "80 Church St, Burlington, VT 05401",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.090014, 39.991044]
+      },
+      "properties": {
+        "unique_id": "1019",
+        "title": "Ras Kassa's Ethiopian Restaurant",
+        "address": "802 S Public Rd, Lafayette, CO 80026",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-118.248501, 34.050513]
+      },
+      "properties": {
+        "unique_id": "1020",
+        "title": "Grand Central Market Fish Tacos",
+        "address": "317 S Broadway, Los Angeles, CA 90013",
+        "icon": "restaurant-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.568604, 40.078327]
+      },
+      "properties": {
+        "unique_id": "1021",
+        "title": "Pawnee Campground",
+        "address": "Brainard Lake Rd, Ward, CO 80481",
+        "icon": "campsite-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-105.746354, 40.110611]
+      },
+      "properties": {
+        "unique_id": "1022",
+        "title": "Monarch Lake Trailhead",
+        "address": "Continental Divide Trail, Granby, CO 80446",
+        "icon": "mountain-15"
+      }
+      },
+      { "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-73.169986, 44.011976]
+      },
+      "properties": {
+        "unique_id": "1023",
+        "title": "Otter Creek Bakery",
+        "address": "14 College St, Middlebury, VT 05753",
+        "icon": "bakery-15"
+      }
       }
       ]
       };
@@ -319,16 +403,6 @@ map.on('load', function() {
   });
 
   map.addLayer({
-    'id': 'places',
-    'type': 'symbol',
-    'source': 'points',
-    'layout': {
-      'icon-image': '{icon}',
-      'icon-allow-overlap': true
-    }
-  });
-
-  map.addLayer({
     id: "clusters",
     type: "circle",
     source: "points",
@@ -370,6 +444,30 @@ map.on('load', function() {
       "text-field": "{point_count_abbreviated}",
       "text-font": ["DIN Offc Pro Medium", "Arial Unicode MS Bold"],
       "text-size": 12
+    }
+  });
+
+  map.addLayer({
+    id: "unclustered-point",
+    type: "circle",
+    source: "points",
+    filter: ["!", ["has", "point_count"]],
+    paint: {
+      "circle-color": "#e7e9e9",
+      "circle-radius": 12,
+      "circle-stroke-width": .75, // .5
+      "circle-stroke-color": "#8C541C"
+    }
+  });
+
+  map.addLayer({
+    'id': 'places',
+    'type': 'symbol',
+    'source': 'points',
+    'layout': {
+      'icon-image': '{icon}',
+      'icon-allow-overlap': true
+      //'icon-color':'#7CFC00'
     }
   });
 
@@ -422,20 +520,6 @@ map.on('load', function() {
   // for (const feature of points.features) {
   //   const symbol = feature.properties.icon;
   //   const layerID = `poi-${symbol}`;
-
-  //
-  // map.addLayer({
-  //   id: "unclustered-point",
-  //   type: "circle",
-  //   source: "points",
-  //   filter: ["!", ["has", "point_count"]],
-  //   paint: {
-  //     "circle-color": "#e7e9e9",
-  //     "circle-radius": 12,
-  //     "circle-stroke-width": .5, // .5
-  //     "circle-stroke-color": "#84909a"
-  //   }
-  // });
 
   //     // Add a layer for this symbol type if it hasn't been added already.
   //     if (!map.getLayer(layerID)) {
